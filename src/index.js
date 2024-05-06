@@ -10,7 +10,11 @@ const routes = {
     ...
 }
 */
-
+export function Home(props) {
+  const viewEl = document.createElement('div');
+  viewEl.textContent = 'Welcome to the home page!';
+  return viewEl;
+}
 /*
 TODO:
 1.- Definir rutas en router.
