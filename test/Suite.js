@@ -1,4 +1,4 @@
-export default [
+export const data = [
   
   {
     "id": "lorelai_gilmore",
@@ -20,19 +20,19 @@ export default [
     "imageUrl": "https://qph.cf2.quoracdn.net/main-qimg-4bfc69b193566e7e5d39919f48f77ff6",
     "facts": {
       "ocupación": "Estudiante universitaria",
-      "intereses": [" Periodismo"," Libros", " Café"],
+      "intereses": [" Periodismo", " Libros", " Café"],
       "número de apariciones": 153
     }
   },
   {
     "id": "emily_gilmore",
     "name": "Emily Gilmore",
-    "shortDescription": "Socialité",
+    "shortDescription": "Socialité y matriarca de su familia.",
     "description": "Emily Gilmore es una distinguida socialité que se mueve en los círculos más exclusivos de la sociedad. Su amor por el arte y la música clásica refleja su elegancia y sofisticación.",
     "imageUrl": "https://cdn.vox-cdn.com/thumbor/_pmWu3TKeg-CndaOQN5wGl3anrs=/0x0:640x480/1400x1400/filters:focal(269x189:371x291):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/51998983/emily.0.jpeg",
     "facts": {
       "ocupación": "Socialité",
-      "intereses": [" Sociedad", " Arte", " Música"],
+      "intereses": [" Sociedad", " Arte", " Música clásica"],
       "número de apariciones": 113
     }
   },
@@ -44,7 +44,7 @@ export default [
     "imageUrl": "https://image.gala.de/20360122/t/Oe/v18/w1440/r0/-/gilmore-girls05--4746526-.jpg",
     "facts": {
       "ocupación": "Empresario",
-      "intereses": ["Negocios", " Golf", " Literatura"],
+      "intereses": [" Negocios", " Golf", " Literatura"],
       "número de apariciones": 79
     }
   },
@@ -56,7 +56,7 @@ export default [
     "imageUrl": "https://i.pinimg.com/originals/86/ec/1e/86ec1e6872ec003b6e4dacf06686a8dc.jpg",
     "facts": {
       "ocupación": "Dueño de Luke's Diner",
-      "intereses": ["Café", " Cocina", " Música"],
+      "intereses": [" Café", " Cocina", " Música"],
       "número de apariciones": 152
     }
   },
@@ -104,7 +104,7 @@ export default [
     "imageUrl": "https://i.pinimg.com/originals/7d/89/d7/7d89d7552793ca81edf8505d52182d6d.jpg",
     "facts": {
       "ocupación": "Recepcionista",
-      "intereses": ["Viajar", " Moda", " Cultura francesa"],
+      "intereses": [" Viajar", " Moda", " Cultura francesa"],
       "número de apariciones": 94
     }
   },
@@ -116,7 +116,7 @@ export default [
     "imageUrl": "https://i.pinimg.com/736x/a7/72/a4/a772a4930caae0c7a212c7632a690786.jpg",
     "facts": {
       "ocupación": "Trabajador múltiple",
-      "intereses": ["Organización"],
+      "intereses": [" Organización"],
       "número de apariciones": 153
     }
   },
@@ -128,7 +128,7 @@ export default [
     "imageUrl": "https://telltaletv.com/wp-content/uploads/2022/11/358_GILMOREGIRLS_101_SPR_02931R-scaled-e1668874657217-730x487.jpg",
     "facts": {
       "ocupación": "Dueño de la tienda de comestibles",
-      "intereses": ["Organización", "Comunidad", "Políticas municipales"],
+      "intereses": [" Organización", " Comunidad", " Políticas municipales"],
       "número de apariciones": 153
     }
   },
@@ -164,7 +164,7 @@ export default [
     "imageUrl": "https://i.pinimg.com/736x/93/1d/69/931d697cac68b072d957f6c59e7662b7.jpg",
     "facts": {
       "ocupación": "Librero",
-      "intereses": [" Literatura", " Música", "Escritura"],
+      "intereses": [" Literatura", " Música", " Escritura"],
       "número de apariciones": 53
     }
   },
@@ -189,7 +189,7 @@ export default [
     "imageUrl": "https://i.insider.com/654d29b63cc84b4dfaff9c6e?width=1136&format=jpeg",
     "facts": {
       "ocupación": "Dueña de la tienda de antigüedades",
-      "intereses": ["Cultura coreana", " Religión", " Tradiciones"],
+      "intereses": [" Cultura coreana", " Religión", " Tradiciones"],
       "número de apariciones": 58
     }
   },
@@ -262,7 +262,7 @@ export default [
     "imageUrl": "https://media.themoviedb.org/t/p/w500/j0V63QscxjhZNeIWPHhtcFkLtUf.jpg",
     "facts": {
       "ocupación": "Abogada",
-      "intereses": ["Leyes", " Justicia", " Viajar"],
+      "intereses": [" Leyes", " Justicia", " Viajar"],
       "número de apariciones": 27
     }
   },
@@ -290,4 +290,89 @@ export default [
       "número de apariciones": 11
     }
   }
+];
+
+export const sortAsc = [
+
+  {
+    "id": "dean_forester",
+    "name": "Dean Forester",
+    "shortDescription": "Vendedor de automóviles.",
+    "description": "Dean Forester es un vendedor de automóviles con una pasión por los coches y los deportes. Su relación con Rory Gilmore es una parte importante de su vida, aunque enfrenta desafíos mientras intenta equilibrar trabajo y amor.",
+    "imageUrl": "https://www.newamericanjackets.com/wp-content/uploads/2020/01/Dean-Forester-Gilmore-Girls-Jared-Padalecki-Jacket.jpg",
+    "facts": {
+      "ocupación": "Vendedor",
+      "intereses": [" Automóviles", " Deportes", " Rory"],
+      "número de apariciones": 63
+    }
+  },
+  {
+    "id": "jess_mariano",
+    "name": "Jess Mariano",
+    "shortDescription": "Apasionado por la literatura.",
+    "description": "Jess Mariano es un joven librero con un profundo amor por la literatura, la música y la escritura. A pesar de su actitud desafiante, muestra un lado sensible y reflexivo que lo hace intrigante para aquellos que lo conocen.",
+    "imageUrl": "https://i.pinimg.com/736x/93/1d/69/931d697cac68b072d957f6c59e7662b7.jpg",
+    "facts": {
+      "ocupación": "Librero",
+      "intereses": [" Literatura", " Música", " Escritura"],
+      "número de apariciones": 53
+    }
+  },
+  {
+    "id": "miss_patty",
+    "name": "Miss Patty",
+    "shortDescription": "Bailarina retirada.",
+    "description": "Miss Patty es una bailarina retirada y la dueña de la escuela de danza de Stars Hollow. Con un amor por el baile y los chismes, es una figura querida en la comunidad que a menudo ofrece sabios consejos y un oído atento.",
+    "imageUrl": "https://www.plusbydesign.com/cdn/shop/articles/miss_patty_1024x1024.jpg?v=1500067505",
+    "facts": {
+      "ocupación": "Bailarina retirada / Dueña de la escuela de danza",
+      "intereses": [" Bailar", " Chismes", " Enseñar"],
+      "número de apariciones": 103
+    }
+
+  },
 ]
+export const sortDesc= [
+  {
+    "id": "miss_patty",
+    "name": "Miss Patty",
+    "shortDescription": "Bailarina retirada.",
+    "description": "Miss Patty es una bailarina retirada y la dueña de la escuela de danza de Stars Hollow. Con un amor por el baile y los chismes, es una figura querida en la comunidad que a menudo ofrece sabios consejos y un oído atento.",
+    "imageUrl": "https://www.plusbydesign.com/cdn/shop/articles/miss_patty_1024x1024.jpg?v=1500067505",
+    "facts": {
+      "ocupación": "Bailarina retirada / Dueña de la escuela de danza",
+      "intereses": [" Bailar", " Chismes", " Enseñar"],
+      "número de apariciones": 103
+    }
+
+  },
+  {
+    "id": "jess_mariano",
+    "name": "Jess Mariano",
+    "shortDescription": "Apasionado por la literatura.",
+    "description": "Jess Mariano es un joven librero con un profundo amor por la literatura, la música y la escritura. A pesar de su actitud desafiante, muestra un lado sensible y reflexivo que lo hace intrigante para aquellos que lo conocen.",
+    "imageUrl": "https://i.pinimg.com/736x/93/1d/69/931d697cac68b072d957f6c59e7662b7.jpg",
+    "facts": {
+      "ocupación": "Librero",
+      "intereses": [" Literatura", " Música", " Escritura"],
+      "número de apariciones": 53
+    }
+  },
+  {
+    "id": "dean_forester",
+    "name": "Dean Forester",
+    "shortDescription": "Vendedor de automóviles.",
+    "description": "Dean Forester es un vendedor de automóviles con una pasión por los coches y los deportes. Su relación con Rory Gilmore es una parte importante de su vida, aunque enfrenta desafíos mientras intenta equilibrar trabajo y amor.",
+    "imageUrl": "https://www.newamericanjackets.com/wp-content/uploads/2020/01/Dean-Forester-Gilmore-Girls-Jared-Padalecki-Jacket.jpg",
+    "facts": {
+      "ocupación": "Vendedor",
+      "intereses": [" Automóviles", " Deportes", " Rory"],
+      "número de apariciones": 63
+    }
+  },
+]
+export const prom = [
+  { facts: { 'número de apariciones': 63 } },
+  { facts: { 'número de apariciones': 53 } },
+  { facts: { 'número de apariciones': 103 } },
+];
