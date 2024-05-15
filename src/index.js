@@ -1,7 +1,7 @@
 // En este archivo definirás tus rutas e importarás los componentes que vas a renderizar.
 
 import { setRootEl, setRoutes, onURLChange } from './router.js';
-import { home } from './views/home.js';
+import { home } from './views/Home.js';
 //import { setRootEl, setRoutes, onURLChange } from './router.js';
 
 // ... import other views
