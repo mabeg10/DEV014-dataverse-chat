@@ -1,5 +1,5 @@
 h1 {
-    color: white;
+    color: #F5F5F0;
     font-size: 50px;
     margin: -20px;
     padding: 40px;
@@ -18,7 +18,6 @@ h1 {
     margin-left: -20px;
 }
 
-
 .cards-container {
 display: flex;
 flex-direction: row;
@@ -31,7 +30,7 @@ justify-content: center;
 .cards {
 
     width: 250px;
-    color: #faf1e4;
+    color: #F5F5F0;
     background-color:rgba(179, 124, 61, 0.8);
     border-radius: 8px;
     box-shadow: 0 4PX 8px rgba(0, 0, 0, 1.8);
@@ -61,42 +60,28 @@ span {
 
 }
 
-.more-info-button {
-    margin-top: 5%;
-    margin-left: 20%;
-    background-color: #faf1e4;
-    border: none;
-    border-radius: 10%;
-    font-size: 13px;
-   color: #333; /* Color del texto */
-   cursor: pointer;
-   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-   transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-
-}
-
 .chat-button {
     margin-top: 5%;
-    margin-left: 10%;
+    margin-left: 25%;
     background-color: #faf1e4;
     border: none;
-    border-radius: 10%;
+    border-radius: 5%;
     font-size: 13px;
-    color: #333; /* Color del texto */
+    color: #7e7e7e; /* Color del texto */
     cursor: pointer;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
 }
 
 /* Efecto al pasar el cursor por encima */
-.more-info-button:hover, .chat-button:hover {
+.chat-button:hover {
   background-color: #e0d9cf;
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 8px rgba(21, 21, 21, 0.2);
   transform: translateY(-2px);
 }
 
 /* Efecto al hacer clic */
-.more-info-button:active, .chat-button:active {
+.chat-button:active {
   background-color: #d2c8b8;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
   transform: translateY(0);
@@ -107,25 +92,37 @@ span {
     background-color: #B29C7A;
     width: 100%;
     height: 40px;
-    padding-left: 5%;
+    padding-left: 0%;
     padding-top: 5px;
     border-radius: 3px;
     display: block;
+    justify-content: flex-start;
 }
 
 select {
+    color: #677A54;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 3%;
+    padding-left: 3%;
+    padding-right: 3%;
+    
 }
 
 #filter {
-
+    color: #677A54;
+    border: none;
+    font-size: 15px;
     margin-right: 20px;
     margin-left: 5px;
-
+    align-items: center;
 }
 
 #order {
+   color: #677A54;
+    border: none;
     margin-right: 30px;
+    align-items: center;
 }
 
 #root {
@@ -134,12 +131,13 @@ select {
 }
 
 label[for="filter"] {
-
+    padding-left: 10%;
     font-size: 20px;
+    margin-left: 3%;
     font-family: "Cormorant Garamond", serif;
     font-weight: 5px;
     font-style: normal;
-    color: white
+    color: #F5F5F0
 }
 
 label[for="order"] {
@@ -148,18 +146,60 @@ label[for="order"] {
     font-family: "Cormorant Garamond", serif;
     font-weight: 5px;
     font-style: normal;
-    color: white;
+    color: #F5F5F0;
   
 
 }
 
+#resetButton {
+    background-color: #F5F5F0;
+    border: none;
+    color: #677A54;
+    /*color: #4D3B1F;*/
+    border-radius: 5%;
+    border: none;
+    margin-left: 2%;
+    font-family: "Cormorant Garamond", serif;
+}
+/* Efecto al pasar el cursor por encima */
+#resetButton:hover {
+    background-color: #e0d9cf;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Efecto al hacer clic */
+   #resetButton:active {
+    background-color: #d2c8b8;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+  }
+/* Efecto al pasar el cursor por encima */
+ #calcular:hover {
+    background-color: #e0d9cf;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+  }
+  
+  /* Efecto al hacer clic */
+   #calcular:active {
+    background-color: #d2c8b8;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+    transform: translateY(0);
+  }
 #estadistica {
+    margin-left: 10%;
     color: white;
     padding: 0;
 
 }
 
 #calcular {
+    border: none;
+    color: #677A54;
+    border-radius: 5%;
+    border: none;
+    margin-left: 10%;
     font-family: "Cormorant Garamond", serif;
 
 }
@@ -183,6 +223,65 @@ footer {
     display: none;
 }
 
+#apikey-container {
+    margin-top: 10%;
+}
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(179, 124, 61, 0.8);
+    color: #faf1e4;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    margin: 0 auto;
+    max-width: 600px;
+}
+.chat-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#chat-box {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+.send-button {
+    padding: 10px 20px;
+    border-radius: 0 10px 10px 0;
+    border: none;
+    background-color: #5a9;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.send-button:hover {
+    background-color: #48a;
+}
+
+.title {
+    color: #faf1e4;
+    display: inline;
+    padding-top: 0;
+    font-size: 24px;
+}
+
+.imageCharacter {
+display: inline;
+margin-top: 5%;
+width: 80px;
+height: 100px;
+border-radius: 10%;
+
+
+}
 @media only screen and (max-width: 575px) {
     .abrir-menu {
         display: block;

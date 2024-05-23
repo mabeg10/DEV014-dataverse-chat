@@ -2,12 +2,15 @@
 
 import { setRootEl, setRoutes, onURLChange } from './router.js';
 import { home } from './views/Home.js';
+import ApiKeyView from './views/ApiKeyView.js';
+import CharactersView from '../views/Characters.js';
 //import { setRootEl, setRoutes, onURLChange } from './router.js';
 
 // ... import other views
 const routes = {
   '/': home,
-  // ...
+  '/apikey': ApiKeyView,
+  '/chat': CharactersView,
 };
 
 // Assign the routes

@@ -1,5 +1,8 @@
 import data   from "../data/dataset.js";
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
+//import ApiKeyView from '../views/ApiKeyView.js';
+import { navigateTo } from '../router.js';
+
 
 export const home = () => {
   const infoHtml = document.createElement('div');
@@ -29,8 +32,8 @@ export const home = () => {
 </nav>
 <main>
     <div id="estadistica"></div>
+    <div id="apikey-view"></div> 
     <div id="home"> </div>
-
   </main>
   <footer>
     <p>Derechos de autor &copy;María Belén Guzmán</p>
@@ -38,6 +41,10 @@ export const home = () => {
   //viewEl.appendChild(infoHtml); // Añadir infoHtml al elemento div con ID 'div'. En el router 
   
   const rootElement = infoHtml.querySelector('#home');
+  // Renderizar ApiKeyView
+  //const apiKeyViewContainer = infoHtml.querySelector('#apikey-view');
+  //apiKeyViewContainer.appendChild(ApiKeyView());
+
   const renderItems = (data) => {
     const itemDiv = document.createElement('ul');
     itemDiv.className = 'cards-container';
@@ -64,18 +71,17 @@ export const home = () => {
       interestsDescription.textContent = item.facts.intereses;
       listItem.appendChild(interestsDescription);
       
-      // Crear botón "Más Info"
-      const moreInfoButton = document.createElement('button');
-      moreInfoButton.textContent = 'Más Info';
-      moreInfoButton.className = 'more-info-button';
-      listItem.appendChild(moreInfoButton);
  
-      // Crear botón "Chat"
+      // botón "Chat"
       const chatButton = document.createElement('button');
-      chatButton.textContent = 'Chat';
+      chatButton.textContent = 'Chatea Conmigo';
       chatButton.className = 'chat-button';
+      chatButton.dataset.id = item.id; 
       listItem.appendChild(chatButton);
-
+      
+      chatButton.addEventListener('click', () => {
+        navigateTo('/chat', { id: item.id });
+      });
   
       itemDiv.appendChild(listItem)
     
@@ -145,7 +151,7 @@ export const home = () => {
 
   buttonCalcular.addEventListener('click', function () {
     const resultado = computeStats(data);
-    console.log(resultado);
+  
 
     if (resultadoElement) {
       resultadoElement.remove();
