@@ -1,16 +1,18 @@
 // En este archivo definirás tus rutas e importarás los componentes que vas a renderizar.
 
 import { setRootEl, setRoutes, onURLChange } from './router.js';
-import { home } from './views/Home.js';
-import ApiKeyView from './views/ApiKeyView.js';
-import CharactersView from '../views/Characters.js';
+import { home } from './views/home.js';
+import { apiKeyView } from './views/viewApiKey.js';
+import CharactersView from './views/Characters.js';
+import ChatGroupView from './views/chatGroup.js';
 //import { setRootEl, setRoutes, onURLChange } from './router.js';
 
 // ... import other views
 const routes = {
   '/': home,
-  '/apikey': ApiKeyView,
+  '/apikey': apiKeyView,
   '/chat': CharactersView,
+  '/chatgroup': ChatGroupView,
 };
 
 // Assign the routes
@@ -23,6 +25,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 window.onpopstate = onURLChange;
+
+console.log('se levanta el index.js');
 
 /*
 TODO:

@@ -1,6 +1,6 @@
 import data   from "../data/dataset.js";
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
-//import ApiKeyView from '../views/ApiKeyView.js';
+//import { apiKeyView } from './views/viewApiKey.js';
 import { navigateTo } from '../router.js';
 
 
@@ -28,6 +28,7 @@ export const home = () => {
     </select>
     <button id="resetButton" data-testid="button-clear">LIMPIAR</button>
     <button id="calcular">PROMEDIO DE APARICIONES:</button>
+    <button id="group-chat-button">
   </div>
 </nav>
 <main>
@@ -42,8 +43,10 @@ export const home = () => {
   
   const rootElement = infoHtml.querySelector('#home');
   // Renderizar ApiKeyView
-  //const apiKeyViewContainer = infoHtml.querySelector('#apikey-view');
-  //apiKeyViewContainer.appendChild(ApiKeyView());
+  const apiKeyViewContainer = infoHtml.querySelector('#apikey-view');
+  const buttonApiKey = document.createElement('button')
+  buttonApiKey.textContent = 'Ir a ApiKey'
+  apiKeyViewContainer.appendChild(buttonApiKey);
 
   const renderItems = (data) => {
     const itemDiv = document.createElement('ul');
@@ -163,7 +166,11 @@ export const home = () => {
     }
   });
 
-
+  const groupChatButton = infoHtml.querySelector('#group-chat-button');
+  groupChatButton.textContent = "Chat Grupal"
+  groupChatButton.addEventListener('click', () => {
+    navigateTo('/chatgroup');
+  });
   return infoHtml;
 }
 

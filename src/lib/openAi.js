@@ -1,0 +1,34 @@
+
+import { getApiKey } from './apiKey.js';
+
+// Función para obtener la API key
+const apiKey = getApiKey();
+
+export const getOpenAi =  (messages) => {
+  const url = 'https://api.openai.com/v1/chat/completions';
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${apiKey}`
+  };
+
+  const body = {
+    model: 'gpt-4o',  // Especifica el modelo que quieres usar
+    messages: messages
+  };
+
+  
+  return axios.post(url, body, { headers: headers })
+    
+    .then((result)=>{
+      return result.data.choices[0].message.content;
+    })
+    .catch((err)=> {
+      return err;
+
+    })
+  
+  
+  //console.error('Error al obtener la respuesta de OpenAI:', error);
+  
+};

@@ -1,6 +1,6 @@
-import { setApiKey, getApiKey } from '../lib/apiKey.js';
+import { setApiKey } from "../lib/apiKey.js";
 
-const ApiKeyView = () => {
+export const apiKeyView = () => {
   // Crear el contenedor principal
   const container = document.createElement('div');
   container.id = 'apikey-container';
@@ -8,16 +8,16 @@ const ApiKeyView = () => {
   // Crear el input para la API key
   const apiKeyInput = document.createElement('input');
   apiKeyInput.type = 'text';
-  apiKeyInput.placeholder = 'Enter your API Key';
+  apiKeyInput.placeholder = 'Ingresa tu API Key';
   apiKeyInput.id = 'apikey-input';
   
   // Crear el botón para guardar la API key
   const saveButton = document.createElement('button');
-  saveButton.textContent = 'Save API Key';
+  saveButton.textContent = 'Guarda tu API Key';
   saveButton.onclick = () => {
     const apiKey = apiKeyInput.value;
     setApiKey(apiKey);
-    alert('API Key saved!');
+    alert('API Key guardada!');
   };
   
   // Añadir el input y el botón al contenedor
@@ -25,12 +25,7 @@ const ApiKeyView = () => {
   container.appendChild(saveButton);
   
   // Cargar la API key existente si hay alguna
-  const existingApiKey = getApiKey();
-  if (existingApiKey) {
-    apiKeyInput.value = existingApiKey;
-  }
+
   
   return container;
 };
-  
-export default ApiKeyView;
