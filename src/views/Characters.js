@@ -14,14 +14,29 @@ const CharactersView = ({ id }) => {
   imageCharacter.src = character.imageUrl;
   imageCharacter.className = "imageCharacter";
 
+  const titleContainer = document.createElement('div');
+  titleContainer.className = 'title-container';
+
   const title = document.createElement('div');
   title.className = "title";
   title.textContent = `${character.name}`;
+
+  const subtitle = document.createElement('div');
+  subtitle.className = "subtitle";
+  subtitle.textContent = `En línea`; // Añade el texto que quieras aquí
+
+  titleContainer.appendChild(title);
+  titleContainer.appendChild(subtitle);
+
+  header.appendChild(imageCharacter);
+  header.appendChild(titleContainer);
+
 
   const chatBox = document.createElement('div');
   chatBox.id = 'chat-box';
 
   const messageInput = document.createElement('textarea');
+  messageInput.className = "cuadroinput"
   messageInput.placeholder = 'Escribe tu mensaje...';
 
   const sendButton = document.createElement('button');
@@ -57,8 +72,6 @@ const CharactersView = ({ id }) => {
   });
 
   container.appendChild(header);
-  container.appendChild(imageCharacter);
-  container.appendChild(title);
   container.appendChild(chatBox);
   container.appendChild(messageInput);
   container.appendChild(sendButton);
