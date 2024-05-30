@@ -2,12 +2,17 @@
 
 import { setRootEl, setRoutes, onURLChange } from './router.js';
 import { home } from './views/home.js';
+import { apiKeyView } from './views/viewApiKey.js';
+import CharactersView from './views/Characters.js';
+import ChatGroupView from './views/chatGroup.js';
 //import { setRootEl, setRoutes, onURLChange } from './router.js';
 
 // ... import other views
 const routes = {
   '/': home,
-  // ...
+  '/apikey': apiKeyView,
+  '/chat': CharactersView,
+  '/chatgroup': ChatGroupView,
 };
 
 // Assign the routes
@@ -20,6 +25,8 @@ window.addEventListener("DOMContentLoaded", (e) => {
 });
 
 window.onpopstate = onURLChange;
+
+console.log('se levanta el index.js');
 
 /*
 TODO:

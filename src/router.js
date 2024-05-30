@@ -1,3 +1,5 @@
+
+
 let ROUTES = {};
 let rootEl;
 
@@ -30,6 +32,13 @@ const queryStringToObject = (queryString) => {
   return obj;
 };
 
+export const navigateTo = (pathname, props={}) => {
+  // update window history with pushState
+  const pageUrl = pathname+ "?" + new URLSearchParams(props)
+  history.pushState({},"", pageUrl)
+  // render the view with the pathname and props
+  renderView(location.pathname, props)
+}
 export const onURLChange = ({ currentTarget: { location } }) => {
   // parse the location for the pathname and search params
   const pathname = location.pathname

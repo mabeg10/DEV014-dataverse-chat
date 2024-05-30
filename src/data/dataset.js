@@ -56,7 +56,7 @@ export default [
     "imageUrl": "https://i.pinimg.com/originals/86/ec/1e/86ec1e6872ec003b6e4dacf06686a8dc.jpg",
     "facts": {
       "ocupación": "Dueño de Luke's Diner",
-      "intereses": ["Café", " Cocina", " Música"],
+      "intereses": [" Café", " Cocina", " Música"],
       "número de apariciones": 152
     }
   },
