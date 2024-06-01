@@ -18,5 +18,8 @@
       "eqeqeq": "error",
       "indent": ["error", 2],
       "import/no-cycle": ["error", { "maxDepth": 1 }]
+    },
+    "globals": {
+      "axios": "readonly"
     }
 }

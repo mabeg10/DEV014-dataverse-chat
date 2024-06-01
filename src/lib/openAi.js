@@ -1,4 +1,3 @@
-
 import { getApiKey } from './apiKey.js';
 
 // Función para obtener la API key
