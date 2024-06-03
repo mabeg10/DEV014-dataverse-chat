@@ -10,6 +10,17 @@ const CharactersView = ({ id }) => {
   const header = document.createElement('div');
   header.className = 'chat-header';
 
+  // Botón de flecha para regresar a la vista home
+  const backButton = document.createElement('button');
+  backButton.className = 'back-button';
+  backButton.innerHTML = '←'; // Puedes usar un ícono aquí
+
+  backButton.addEventListener('click', () => {
+    window.location.href = '/'; // Ajusta esto según tu lógica de navegación
+  });
+
+  header.appendChild(backButton);
+
   const imageCharacter = document.createElement('img');
   imageCharacter.src = character.imageUrl;
   imageCharacter.className = "imageCharacter";
@@ -64,7 +75,7 @@ const CharactersView = ({ id }) => {
         aiMessageEl.className = 'bot-message';
         aiMessageEl.textContent = `${character.name}: ${res}`;
         chatBox.appendChild(aiMessageEl);
-        console.log(res);
+        //  console.log(res);
       })
       .catch((err) => {
         console.log(err);
