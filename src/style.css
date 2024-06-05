@@ -299,6 +299,7 @@ footer {
     cursor: pointer;
     padding: 10px;
     margin-right: 10px;
+    margin-left: -50%;
     position: relative;
     display: inline-block;
     width: 1.5rem;
@@ -362,7 +363,10 @@ footer {
     color: #888; /* Color de texto gris para el subtítulo */
   }
 .chat-headergroup {
-    display: flex;
+    /*display: flex; */
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    gap: 2px;
     font-size: 30px;
     color: #F5F5F0;
     align-items: center;
@@ -371,12 +375,16 @@ footer {
     height: 100%;
     margin-bottom: 20px;
 
+
 }
 .imagenchatgrupal {
     display:flex;
-    width: 250px;
-    height: 150px;
+    width: 150px;
+    height: 120px;
     align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+
 
 }
 #chat-box {

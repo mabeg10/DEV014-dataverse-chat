@@ -18,7 +18,7 @@ export const getOpenAi =  (messages) => {
   };
 
   
-  return postRequest(url, body, { headers: headers })
+  return postRequest(url, body, headers)
     
     .then((result)=>{
       return result.data.choices[0].message.content;
