@@ -1,6 +1,5 @@
 import data   from "../data/dataset.js";
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
-//import { apiKeyView } from './views/viewApiKey.js';
 import { navigateTo } from '../router.js';
 
 
@@ -13,6 +12,7 @@ export const home = () => {
 <nav class="nav">
   <button id="cerrar" class="cerrar-menu">cerrar</button>
   <div id="controles">
+    <div id="apikeybutton"></div>
     <label for="filter"> Filtrar por :</label>
     <select id="filter" data-testid="select-filter" name="intereses">
       <option value=" Arte">Arte</option>
@@ -42,11 +42,17 @@ export const home = () => {
   //viewEl.appendChild(infoHtml); // Añadir infoHtml al elemento div con ID 'div'. En el router 
   
   const rootElement = infoHtml.querySelector('#home');
-  // Renderizar ApiKeyView
-  const apiKeyViewContainer = infoHtml.querySelector('#apikey-view');
+  const containerfunctions = infoHtml.querySelector ('#apikeybutton');
+  //APIKEY
+  //const apiKeyViewContainer = infoHtml.querySelector('#apikeybutton');
   const buttonApiKey = document.createElement('button')
-  buttonApiKey.textContent = 'Ir a ApiKey'
-  apiKeyViewContainer.appendChild(buttonApiKey);
+  buttonApiKey.className = 'button-ApiKey';
+  buttonApiKey.textContent = 'Ir a ApiKey';
+  buttonApiKey.addEventListener('click', () => {
+    navigateTo('/apikey');
+  });
+  containerfunctions.appendChild(buttonApiKey);
+  
 
   const renderItems = (data) => {
     const itemDiv = document.createElement('ul');

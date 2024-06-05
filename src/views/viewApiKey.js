@@ -14,6 +14,7 @@ export const apiKeyView = () => {
   // Crear el botón para guardar la API key
   const saveButton = document.createElement('button');
   saveButton.textContent = 'Guarda tu API Key';
+  saveButton.className = 'saveApiKey';
   saveButton.onclick = () => {
     const apiKey = apiKeyInput.value;
     setApiKey(apiKey);

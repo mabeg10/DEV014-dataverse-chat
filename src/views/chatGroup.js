@@ -5,14 +5,31 @@ const ChatGroupView = () => {
   const container = document.createElement('div');
   container.className = 'chat-container';
 
+
+  const imagenchat = document.createElement('img');
+  const imageUrl = "https://okdiario.com/img/series/2016/02/1445601206_241811_1445601596_sumario_normal.jpg";
+  imagenchat.src = imageUrl;
+  //imagenchat.src = 'src/imagen/chatgrupal.jpeg';
+  imagenchat.classList.add('imagenchatgrupal'); 
+
+  //Botón flecha
+  const backButton = document.createElement('button');
+  backButton.className = 'back-button-group';
+  backButton.innerHTML = '←'; // Puedes usar un ícono aquí
+ 
+  backButton.addEventListener('click', () => {
+    window.location.href = '/'; // Ajusta esto según tu lógica de navegación
+  });
+
   const header = document.createElement('div');
-  header.className = 'chat-header';
-  header.textContent = 'Chat Grupal';
+  header.className = 'chat-headergroup';
+  header.textContent = 'Stars Hollow';  
 
   const chatBox = document.createElement('div');
   chatBox.id = 'chat-box';
 
   const messageInput = document.createElement('textarea');
+  messageInput.className = "cuadroinput"
   messageInput.placeholder = 'Escribe tu mensaje...';
 
   const sendButton = document.createElement('button');
@@ -51,6 +68,8 @@ const ChatGroupView = () => {
       });
   });
 
+  container.appendChild(imagenchat);
+  container.appendChild(backButton);
   container.appendChild(header);
   container.appendChild(chatBox);
   container.appendChild(messageInput);

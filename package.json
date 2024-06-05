@@ -21,7 +21,7 @@
     "eslint-plugin-import": "^2.29.1",
     "gh-pages": "^6.1.1",
     "htmlhint": "^1.0.0",
-    "jest": "^27.0.1",
+    "jest": "^27.5.1",
     "jsdom": "^22.1.0",
     "opener": "^1.5.1",
     "serve": "^14.2.1"
@@ -38,6 +38,7 @@
     "commit": "d5b8aec07b9436348c5e1eb156926b50f8ab795f"
   },
   "dependencies": {
-    "axios": "^1.7.2"
+    "axios": "^1.7.2",
+    "axios-mock-adapter": "^1.22.0"
   }
 }

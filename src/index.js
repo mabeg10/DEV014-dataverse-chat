@@ -26,7 +26,7 @@ window.addEventListener("DOMContentLoaded", (e) => {
 
 window.onpopstate = onURLChange;
 
-console.log('se levanta el index.js');
+//console.log('se levanta el index.js');
 
 /*
 TODO:

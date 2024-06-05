@@ -1,5 +1,5 @@
-
 import { getApiKey } from './apiKey.js';
+import { postRequest } from './httpClient.js';
 
 // Función para obtener la API key
 const apiKey = getApiKey();
@@ -18,7 +18,7 @@ export const getOpenAi =  (messages) => {
   };
 
   
-  return axios.post(url, body, { headers: headers })
+  return postRequest(url, body, headers)
     
     .then((result)=>{
       return result.data.choices[0].message.content;
@@ -32,3 +32,4 @@ export const getOpenAi =  (messages) => {
   //console.error('Error al obtener la respuesta de OpenAI:', error);
   
 };
+

@@ -1,3 +1,6 @@
+html {
+    background-image: url("imagen/fondo.jpg");
+}
 h1 {
     color: #F5F5F0;
     font-size: 50px;
@@ -17,7 +20,7 @@ h1 {
     margin-right: -60px;
     margin-left: -20px;
 }
-
+ 
 .cards-container {
 display: flex;
 flex-direction: row;
@@ -65,9 +68,9 @@ span {
     margin-left: 25%;
     background-color: #faf1e4;
     border: none;
-    border-radius: 5%;
-    font-size: 13px;
-    color: #7e7e7e; /* Color del texto */
+    border-radius: 10px;
+    font-size: 13.3px;
+    color: #656464; /* Color del texto */
     cursor: pointer;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
@@ -88,24 +91,46 @@ span {
 }
 
 #controles {
+    display: flex;
+    grid-auto-flow: column;
     color: #EBDEEF;
     background-color: #B29C7A;
     width: 100%;
     height: 40px;
     padding-left: 0%;
-    padding-top: 5px;
-    border-radius: 3px;
-    display: block;
+    padding-top: 0.34;
+    padding-bottom: 0.3%;
+    border-radius: 5%;
+    align-items: center;
     justify-content: flex-start;
 }
 
+.button-ApiKey {
+    margin-top: 3px;
+    margin-left: 110px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 20px;
+    border: none;
+    background-color:#526642;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+
+}
+.button-ApiKey:hover {
+    background-color: #3E2723;
+}
 select {
     color: #677A54;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: none;
-    border-radius: 3%;
+    border-radius: 5px;
     padding-left: 3%;
     padding-right: 3%;
+    margin-top: 1px;
+    margin-left: 5px;
     
 }
 
@@ -125,15 +150,12 @@ select {
     align-items: center;
 }
 
-#root {
-    background-image: url("imagen/fondo.jpg");
-    margin-top: -18px;
-}
+
 
 label[for="filter"] {
-    padding-left: 10%;
+    padding-left: 5%;
     font-size: 20px;
-    margin-left: 3%;
+    margin-left: 0%;
     font-family: "Cormorant Garamond", serif;
     font-weight: 5px;
     font-style: normal;
@@ -156,7 +178,7 @@ label[for="order"] {
     border: none;
     color: #677A54;
     /*color: #4D3B1F;*/
-    border-radius: 5%;
+    border-radius: 5px;
     border: none;
     margin-left: 2%;
     font-family: "Cormorant Garamond", serif;
@@ -197,9 +219,10 @@ label[for="order"] {
 #calcular {
     border: none;
     color: #677A54;
-    border-radius: 5%;
+    border-radius: 5px;
     border: none;
-    margin-left: 10%;
+    margin-left: 6%;
+    margin-right: 5%;
     font-family: "Cormorant Garamond", serif;
 
 }
@@ -224,21 +247,88 @@ footer {
 }
 
 #apikey-container {
-    width: 100%;
-    height: 40%;
+    width: 688px;
+    height: 1116px;
     display: block;
     align-items: center;
     padding-top: 2%;
-    padding-left: 40%;
-    
+    padding-left: 10%;
+   
+}
+#apikey-input {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 20%;
+    background-color: #ffffff;
+    color: rgb(6, 6, 6);
+    cursor: pointer;
+    transition: background-color 0.3s;
     
 }
+.saveApiKey {
+    width: 300px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 20%;
+    background-color: #ffffff;
+    color: rgb(6, 6, 6);
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+}
+
+.back-button {
+    background-color:transparent ;
+    border: none;
+    color: #EBDEEF;
+    margin-left: 39%;
+    margin-bottom: 25%;
+    margin-top: 3%;
+    margin-right: 50px;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px;
+    margin-right: 10px;
+  }
+.back-button-group {
+    display: inline;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 10px;
+    margin-left: -50%;
+    position: relative;
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+#group-chat-button {
+    display: inline;
+    padding-right: 6px;
+    padding: 6px;
+    margin-top: 3px;
+    margin-left: 10px;
+    border-radius: 20px;
+    border: none;
+    background-color:#526642;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+#group-chat-button:hover {
+    background-color: #3E2723;
+
+  }
 .chat-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgba(179, 124, 61, 0.8);
-    color: #faf1e4;
+    background-color: rgba(179, 124, 61, 0.9);
+    color: #2f2f2f;
     padding: 20px;
     border-radius: 10px;
     width: 90%;
@@ -246,49 +336,152 @@ footer {
     max-width: 600px;
 }
 .chat-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 10px;
+        margin-right: 80%;
+        margin-bottom: 30%;
+        margin-top: -7%;
+        background-color: none;
+      
+}
+
+  .title-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .title {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #b7b5b5; /* Color de texto gris para el subtítulo */
+  }
+.chat-headergroup {
+    /*display: flex; */
+    display: grid;
+    grid-template-columns: auto 1fr; 
+    gap: 2px;
+    font-size: 30px;
+    color: #F5F5F0;
+    align-items: center;
+    margin-left: 75%;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+
+
+}
+.imagenchatgrupal {
+    display:flex;
+    width: 150px;
+    height: 120px;
+    align-items: center;
+    border-radius: 50%;
+    object-fit: cover;
+
+
+}
+#chat-box {
+    height: 75%;
+    max-height: 500px;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    margin: 0px auto;
+    width: 100%;
+    border-radius: 10px;
+    
+    
+}
+
+#chat-box p {
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+  }
+#chat-box p.user-message {
+    align-self: flex-end;
+    background-color: #F5F5DC; /* Color de fondo para los mensajes del usuario */
+    margin-right: 5%;
+  }
+  
+  #chat-box p.bot-message {
+    align-self: flex-start;
+    background-color: rgba(245, 245, 245, 0.9);;
+    color: #000000;
+    margin-left: -17px;
+     /* Color de fondo para los mensajes del bot */
+  }
+
+  .cuadroinput {
     display: flex;
     align-items: center;
     width: 100%;
-    margin-bottom: 20px;
-}
-#chat-box {
-    width: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 20px;
-    max-height: 300px;
-    overflow-y: auto;
-}
-.send-button {
-    padding: 10px 20px;
-    border-radius: 0 10px 10px 0;
+    height: 5%;
+    background-color: #F5F5DC;
     border: none;
-    background-color: #5a9;
+    border-radius: 10px;
+  }
+  
+  .cuadroinput textarea {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #F5F5DC;
+    font-size: 16px;
+    resize: none;
+    outline: none;
+  }
+  
+  .send {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    margin-left: 10px;
+    margin-top: 2%;
+    border-radius: 20px;
+    border: none;
+    background-color: #3E2723;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-.send-button:hover {
-    background-color: #48a;
-}
+  }
+  
+  .send:hover {
+    background-color: #526642;
+  }
 
 .title {
     color: #faf1e4;
     display: inline;
-    padding-top: 0;
+    margin-top: -70px;
+    margin-right: auto;
     font-size: 24px;
 }
 
 .imageCharacter {
-display: inline;
-margin-top: 5%;
-width: 80px;
-height: 100px;
-border-radius: 10%;
+    display: inline;
+    margin-top: 2.1%;
+    margin-right: 2%;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+     height: 55px;
+     border-radius: 50%;
+     object-fit: cover;
+    }
 
-
-}
 @media only screen and (max-width: 575px) {
     .abrir-menu {
         display: block;
