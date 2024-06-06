@@ -1,4 +1,4 @@
-# Interacción con Personajes de "Gilmore Girls"
+# Gilmore Girls
 
 ## Índice
 
