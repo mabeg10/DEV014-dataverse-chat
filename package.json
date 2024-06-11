@@ -9,7 +9,8 @@
     "pretest": "npm run eslint && npm run htmlhint",
     "test": "jest --verbose --coverage test/",
     "open-coverage-report": "opener ./coverage/lcov-report/index.html",
-    "start": "serve src/ -s"
+    "start": "serve src/ -s",
+    "build": "vite build src/"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -24,7 +25,8 @@
     "jest": "^27.5.1",
     "jsdom": "^22.1.0",
     "opener": "^1.5.1",
-    "serve": "^14.2.1"
+    "serve": "^14.2.1",
+    "vite": "^5.2.12"
   },
   "engines": {
     "node": ">=16.x"

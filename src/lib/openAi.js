@@ -15,7 +15,7 @@ export const getOpenAi =  (messages) => {
   const body = {
     model: 'gpt-4o',  // Especifica el modelo que quieres usar
     messages: messages
-  };
+  };  
 
   
   return postRequest(url, body, headers)
