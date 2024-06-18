@@ -2,9 +2,11 @@ import { getApiKey } from './apiKey.js';
 import { postRequest } from './httpClient.js';
 
 // Función para obtener la API key
-const apiKey = getApiKey();
 
 export const getOpenAi =  (messages) => {
+
+  const apiKey = getApiKey();
+
   const url = 'https://api.openai.com/v1/chat/completions';
 
   const headers = {
