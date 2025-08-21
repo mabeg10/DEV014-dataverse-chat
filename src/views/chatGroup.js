@@ -1,82 +1,118 @@
+// src/views/chatGroup.js
 import characters from '../data/dataset.js';
 import { getOpenAi } from '../lib/openAi.js';
 import { navigateTo } from '../router.js';
 
 const ChatGroupView = () => {
+  // Contenedor principal
   const container = document.createElement('div');
   container.className = 'chat-container';
 
+  // ===== Header (flecha + avatar + título)
   const header = document.createElement('div');
-  header.className = 'chat-headergroup';
+  header.className = 'chat-header';
 
   const backButton = document.createElement('button');
   backButton.className = 'back-button-group';
   backButton.innerHTML = '←';
   backButton.addEventListener('click', () => navigateTo('/'));
 
-  const imagenchat = document.createElement('img');
-  imagenchat.src = "https://okdiario.com/img/series/2016/02/1445601206_241811_1445601596_sumario_normal.jpg";
-  imagenchat.classList.add('imagenchatgrupal');
-  imagenchat.alt = 'Stars Hollow';
+  const avatar = document.createElement('img');
+  avatar.src =
+    'https://okdiario.com/img/series/2016/02/1445601206_241811_1445601596_sumario_normal.jpg';
+  avatar.alt = 'Stars Hollow';
+  avatar.className = 'avatar';
 
   const title = document.createElement('div');
-  title.className = 'title';
+  title.className = 'chat-title';
   title.textContent = 'Stars Hollow';
 
   header.appendChild(backButton);
-  header.appendChild(imagenchat);
+  header.appendChild(avatar);
   header.appendChild(title);
 
+  // ===== Área de mensajes
   const chatBox = document.createElement('div');
   chatBox.id = 'chat-box';
 
-  const inputWrap = document.createElement('div');
-  inputWrap.className = "cuadroinput";
+  // ===== Composer (input + botón)
+  const composer = document.createElement('div');
+  composer.className = 'composer';
 
   const messageInput = document.createElement('textarea');
-  messageInput.rows = 1;
+  messageInput.className = 'composer-input';
   messageInput.placeholder = 'Escribe tu mensaje…';
+  messageInput.rows = 1;
 
   const sendButton = document.createElement('button');
   sendButton.textContent = 'Enviar';
-  sendButton.className = "send";
+  sendButton.className = 'send';
 
-  sendButton.addEventListener('click', () => {
-    const message = messageInput.value;
-    if (message.trim() === '') {
-      alert('Por favor, escribe un mensaje.');
-      return;
-    }
+  composer.appendChild(messageInput);
+  composer.appendChild(sendButton);
 
-    const userMessageElement = document.createElement('p');
-    userMessageElement.textContent = `Tú: ${message}`;
-    userMessageElement.className = 'user-message';
-    chatBox.appendChild(userMessageElement);
-    messageInput.value = '';
-
-    const prompts = characters.map((character) => ({
-      role: 'user',
-      content: `Actúa simulando ser ${character.name}, ${message}`
-    }));
-
-    Promise.all(prompts.map((msg) => getOpenAi([msg])))
-      .then((responses) => {
-        responses.forEach((res, index) => {
-          const aiMessageEl = document.createElement('p');
-          aiMessageEl.className = 'bot-message';
-          aiMessageEl.textContent = `${characters[index].name}: ${res}`;
-          chatBox.appendChild(aiMessageEl);
-        });
-      })
-      .catch(console.error);
-  });
-
-  inputWrap.appendChild(messageInput);
-  inputWrap.appendChild(sendButton);
-
+  // Montaje
   container.appendChild(header);
   container.appendChild(chatBox);
-  container.appendChild(inputWrap);
+  container.appendChild(composer);
+
+  // ===== Helpers
+  const scrollToBottom = () => {
+    requestAnimationFrame(() => {
+      chatBox.scrollTop = chatBox.scrollHeight;
+    });
+  };
+
+  const sendMessage = async () => {
+    const message = messageInput.value.trim();
+    if (!message) return;
+
+    // Mensaje del usuario
+    const you = document.createElement('p');
+    you.className = 'user-message';
+    you.textContent = `Tú: ${message}`;
+    chatBox.appendChild(you);
+    scrollToBottom();
+    messageInput.value = '';
+
+    try {
+      // Un prompt por personaje
+      const prompts = characters.map((ch) => [
+        { role: 'user', content: `Actúa simulando ser ${ch.name}, ${message}` },
+      ]);
+
+      const responses = await Promise.all(prompts.map((p) => getOpenAi(p)));
+
+      responses.forEach((res, idx) => {
+        const ch = characters[idx];
+        const ai = document.createElement('p');
+        ai.className = 'bot-message';
+        ai.textContent = `${ch.name}: ${res}`;
+        chatBox.appendChild(ai);
+      });
+
+      scrollToBottom();
+    } catch (err) {
+      console.error(err);
+      const errorEl = document.createElement('p');
+      errorEl.className = 'bot-message';
+      errorEl.textContent = 'Ups, hubo un problema. Intenta de nuevo.';
+      chatBox.appendChild(errorEl);
+      scrollToBottom();
+    }
+  };
+
+  // Eventos (click y Enter para enviar)
+  sendButton.addEventListener('click', sendMessage);
+  messageInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // Autofocus
+  requestAnimationFrame(() => messageInput.focus());
 
   return container;
 };
