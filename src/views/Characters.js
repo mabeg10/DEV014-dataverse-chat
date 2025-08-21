@@ -1,5 +1,6 @@
-import characters from '../data/dataset.js'; 
+import characters from '../data/dataset.js';
 import { getOpenAi } from '../lib/openAi.js';
+import { navigateTo } from '../router.js';
 
 const CharactersView = ({ id }) => {
   const character = characters.find((char) => char.id === id);
@@ -7,48 +8,49 @@ const CharactersView = ({ id }) => {
   const container = document.createElement('div');
   container.className = 'chat-container';
 
+  // Header
   const header = document.createElement('div');
-  header.className = 'chat-header';
+  header.className = 'chat-headergroup';
 
-  // Botón de flecha para regresar a la vista home
   const backButton = document.createElement('button');
   backButton.className = 'back-button';
-  backButton.innerHTML = '←'; // Puedes usar un ícono aquí
-
-  backButton.addEventListener('click', () => {
-    window.location.href = '/'; // Ajusta esto según tu lógica de navegación
-  });
-
-  header.appendChild(backButton);
+  backButton.innerHTML = '←';
+  backButton.addEventListener('click', () => navigateTo('/'));
 
   const imageCharacter = document.createElement('img');
   imageCharacter.src = character.imageUrl;
   imageCharacter.className = "imageCharacter";
+  imageCharacter.alt = character.name;
 
   const titleContainer = document.createElement('div');
   titleContainer.className = 'title-container';
 
   const title = document.createElement('div');
   title.className = "title";
-  title.textContent = `${character.name}`;
+  title.textContent = character.name;
 
   const subtitle = document.createElement('div');
   subtitle.className = "subtitle";
-  subtitle.textContent = `En línea`; // Añade el texto que quieras aquí
+  subtitle.textContent = 'En línea';
 
   titleContainer.appendChild(title);
   titleContainer.appendChild(subtitle);
 
+  header.appendChild(backButton);
   header.appendChild(imageCharacter);
   header.appendChild(titleContainer);
 
-
+  // Chat
   const chatBox = document.createElement('div');
   chatBox.id = 'chat-box';
 
+  // Entrada de mensaje (arreglo: .cuadroinput es contenedor)
+  const inputWrap = document.createElement('div');
+  inputWrap.className = "cuadroinput";
+
   const messageInput = document.createElement('textarea');
-  messageInput.className = "cuadroinput"
-  messageInput.placeholder = 'Escribe tu mensaje...';
+  messageInput.rows = 1;
+  messageInput.placeholder = 'Escribe tu mensaje…';
 
   const sendButton = document.createElement('button');
   sendButton.textContent = 'Enviar';
@@ -58,7 +60,7 @@ const CharactersView = ({ id }) => {
     const message = messageInput.value;
     if (message.trim() === '') {
       alert('Por favor, escribe un mensaje.');
-      return; // Detener la función si el mensaje está vacío
+      return;
     }
 
     const userMessageEl = document.createElement('p');
@@ -67,7 +69,6 @@ const CharactersView = ({ id }) => {
     chatBox.appendChild(userMessageEl);
     messageInput.value = '';
 
-    // Petición con la función getOpenAi
     const messageOpenAI = [{ role: 'user', content: `Actúa simulando ser ${character.name}, ${message}` }];
     getOpenAi(messageOpenAI)
       .then((res) => {
@@ -75,17 +76,16 @@ const CharactersView = ({ id }) => {
         aiMessageEl.className = 'bot-message';
         aiMessageEl.textContent = `${character.name}: ${res}`;
         chatBox.appendChild(aiMessageEl);
-        //  console.log(res);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch(console.error);
   });
+
+  inputWrap.appendChild(messageInput);
+  inputWrap.appendChild(sendButton);
 
   container.appendChild(header);
   container.appendChild(chatBox);
-  container.appendChild(messageInput);
-  container.appendChild(sendButton);
+  container.appendChild(inputWrap);
 
   return container;
 };

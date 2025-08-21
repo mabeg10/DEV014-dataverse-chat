@@ -1,183 +1,157 @@
-import data   from "../data/dataset.js";
+import data from "../data/dataset.js";
 import { filterData, sortData, computeStats } from '../lib/dataFunctions.js';
 import { navigateTo } from '../router.js';
 
-
 export const home = () => {
   const infoHtml = document.createElement('div');
-  infoHtml.innerHTML = `<header>
-  <h1> GILMORE GIRLS SERIE </h1>
-</header>
-<button id="abrir" class="abrir-menu">abrir</button>
-<nav class="nav">
-  <button id="cerrar" class="cerrar-menu">cerrar</button>
-  <div id="controles">
-    <div id="apikeybutton"></div>
-    <label for="filter"> Filtrar por :</label>
-    <select id="filter" data-testid="select-filter" name="intereses">
-      <option value=" Arte">Arte</option>
-      <option value=" Café">Café</option>
-      <option value=" Música">Música</option>
-      <option value=" Libros">Libros</option>
-    </select>
 
-    <label for="order"> Ordenar por :</label>
-    <select id="select-sort" data-testid="select-sort" name="name" itemprop="select-sort">
-      <option value="asc">A Z</option>
-      <option value="desc">Z A</option>
-    </select>
-    <button id="resetButton" data-testid="button-clear">LIMPIAR</button>
-    <button id="calcular">PROMEDIO DE APARICIONES:</button>
-    <button id="group-chat-button">
+  infoHtml.innerHTML = `
+  <header id="home" role="banner" aria-label="Encabezado">
+  <div class="hero-inner">
+    <h1>Gilmore Girls — Serie</h1>
+    <p class="hero-sub">Directorio de personajes & chat</p>
   </div>
-</nav>
-<main>
-    <div id="estadistica"></div>
-    <div id="apikey-view"></div> 
-    <div id="home"> </div>
-  </main>
-  <footer>
-    <p>Derechos de autor &copy;María Belén Guzmán</p>
-  </footer>`;
-  //viewEl.appendChild(infoHtml); // Añadir infoHtml al elemento div con ID 'div'. En el router 
-  
-  const rootElement = infoHtml.querySelector('#home');
-  const containerfunctions = infoHtml.querySelector ('#apikeybutton');
-  //APIKEY
-  //const apiKeyViewContainer = infoHtml.querySelector('#apikeybutton');
-  const buttonApiKey = document.createElement('button')
+  </header>
+
+    <section id="controles" role="region" aria-label="Controles de filtrado">
+      <div id="apikeybutton"></div>
+
+      <label for="filter"> Filtrar por :</label>
+      <select id="filter" data-testid="select-filter" name="intereses" aria-label="Filtro por interés">
+        <option value="Todos">Todos</option>
+        <!-- OJO: mantengo espacios iniciales para que coincidan con tu dataset -->
+        <option value=" Arte">Arte</option>
+        <option value=" Café">Café</option>
+        <option value=" Música">Música</option>
+        <option value=" Libros">Libros</option>
+      </select>
+
+      <label for="order"> Ordenar por :</label>
+      <select id="order" data-testid="select-sort" name="name" aria-label="Ordenar">
+        <option value="asc">A Z</option>
+        <option value="desc">Z A</option>
+      </select>
+
+      <button id="resetButton" data-testid="button-clear" type="button">LIMPIAR</button>
+      <button id="calcular" type="button">PROMEDIO DE APARICIONES:</button>
+
+      <button id="group-chat-button" type="button">Chat Grupal</button>
+    </section>
+
+    <main role="main">
+      <div id="estadistica" aria-live="polite"></div>
+      <ul class="cards-container" id="cards-list" aria-live="polite"></ul>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Derechos de autor &copy;María Belén Guzmán</p>
+    </footer>
+  `;
+
+  // Botón ApiKey
+  const containerfunctions = infoHtml.querySelector('#apikeybutton');
+  const buttonApiKey = document.createElement('button');
   buttonApiKey.className = 'button-ApiKey';
   buttonApiKey.textContent = 'Ir a ApiKey';
-  buttonApiKey.addEventListener('click', () => {
-    navigateTo('/apikey');
-  });
+  buttonApiKey.addEventListener('click', () => navigateTo('/apikey'));
   containerfunctions.appendChild(buttonApiKey);
-  
 
-  const renderItems = (data) => {
-    const itemDiv = document.createElement('ul');
-    itemDiv.className = 'cards-container';
+  // Render de cards
+  const rootElement = infoHtml.querySelector('#cards-list');
 
-    data.forEach(item => {
-      
-      const listItem = document.createElement('li');
-      listItem.className = 'cards';
-    
-      // imagen 
-      const imageElement = document.createElement('img');
-      imageElement.src = item.imageUrl;
-      listItem.appendChild(imageElement); // Agregar la imagen al div
-    
-      const nameElement = document.createElement('span');
-      nameElement.textContent = item.name; // para combinar name y description
-      listItem.appendChild(nameElement);
+  const renderItems = (lista) => {
+    rootElement.innerHTML = '';
+    const frag = document.createDocumentFragment();
 
-      const interestsTitle = document.createElement('dt');
-      interestsTitle.textContent = 'Intereses:';
-      listItem.appendChild(interestsTitle);
-  
-      const interestsDescription = document.createElement('dd');
-      interestsDescription.textContent = item.facts.intereses;
-      listItem.appendChild(interestsDescription);
-      
- 
-      // botón "Chat"
+    lista.forEach(item => {
+      const li = document.createElement('li');
+      li.className = 'cards';
+
+      const img = document.createElement('img');
+      img.src = item.imageUrl;
+      img.alt = item.name;
+      li.appendChild(img);
+
+      const name = document.createElement('span');
+      name.textContent = item.name;
+      li.appendChild(name);
+
+      // Intereses → chips bonitos (a partir del array)
+      if (item.facts?.intereses?.length) {
+        const chipsWrap = document.createElement('div');
+        item.facts.intereses.forEach(raw => {
+          const txt = String(raw).trim();
+          if (!txt) return;
+          const chip = document.createElement('span');
+          chip.className = 'chip';
+          chip.textContent = txt;
+          chipsWrap.appendChild(chip);
+        });
+        li.appendChild(chipsWrap);
+      }
+
       const chatButton = document.createElement('button');
       chatButton.textContent = 'Chatea Conmigo';
       chatButton.className = 'chat-button';
-      chatButton.dataset.id = item.id; 
-      listItem.appendChild(chatButton);
-      
-      chatButton.addEventListener('click', () => {
-        navigateTo('/chat', { id: item.id });
-      });
-  
-      itemDiv.appendChild(listItem)
-    
+      chatButton.addEventListener('click', () => navigateTo('/chat', { id: item.id }));
+      li.appendChild(chatButton);
 
+      frag.appendChild(li);
     });
-    
-    return itemDiv;
-  
-  };
-  
-  //manejo DOM FUNCIONES
 
+    rootElement.appendChild(frag);
+  };
+
+  // Estado inicial
+  let dataFiltrada = data.slice();
+  renderItems(dataFiltrada);
+
+  // Controles
   const estadistica = infoHtml.querySelector('#estadistica');
   const selectFilter = infoHtml.querySelector('#filter');
-  const selectOrder = infoHtml.querySelector('#select-sort');
-  const resetButton = infoHtml.querySelector('#resetButton');
+  const selectOrder  = infoHtml.querySelector('#order');
+  const resetButton  = infoHtml.querySelector('#resetButton');
   const buttonCalcular = infoHtml.querySelector('#calcular');
-  const abrir = infoHtml.querySelector('#abrir');
-  const cerrar = infoHtml.querySelector("#cerrar");
-  const nav = infoHtml.querySelector(".nav");
-  
-  // MENU HAMBURGUESA
-  abrir.addEventListener('click', function () {
-    nav.classList.add('visible');
+
+  selectFilter.addEventListener('change', (e) => {
+    const valor = e.target.value;
+    dataFiltrada = (valor === 'Todos')
+      ? data.slice()
+      : filterData(data, 'intereses', valor);
+    renderItems(dataFiltrada);
   });
 
-  cerrar.addEventListener("click", () => {
-    nav.classList.remove("visible");
+  selectOrder.addEventListener('change', (e) => {
+    const ordenada = sortData(dataFiltrada, 'name', e.target.value);
+    renderItems(ordenada);
   });
 
-  let dataFiltrada = data;
-
-  const resultRenderItems = renderItems(dataFiltrada);
-  rootElement.appendChild(resultRenderItems);
-
-  //Filter
-  selectFilter.addEventListener('change', function (event) {
-    dataFiltrada = filterData(data, 'intereses', event.target.value);
-
-    rootElement.innerHTML = '';
-
-    const cardsFiltrados = renderItems(dataFiltrada);
-    rootElement.appendChild(cardsFiltrados);
+  resetButton.addEventListener('click', () => {
+    selectFilter.value = 'Todos';
+    selectOrder.value = 'asc';
+    dataFiltrada = data.slice();
+    renderItems(dataFiltrada);
+    estadistica.innerHTML = '';
   });
 
-  // Filtro ordenar
-  selectOrder.addEventListener('change', function (event) {
-    const resultadoSortData = sortData(dataFiltrada, 'name', event.target.value);
-
-    rootElement.innerHTML = '';
-
-    const cardsOrdenados = renderItems(resultadoSortData);
-    rootElement.appendChild(cardsOrdenados);
-  });
-
-  resetButton.addEventListener('click', function () {
-    selectFilter.value = '';
-    selectOrder.value = '';
-    rootElement.innerHTML = '';
-    dataFiltrada = data;
-    const cardsOriginales = renderItems(data);
-    rootElement.appendChild(cardsOriginales);
-  });
-
-  // ESTADÍSTICA
-  let resultadoElement = null; 
-
-  buttonCalcular.addEventListener('click', function () {
-    const resultado = computeStats(data);
-  
-
+  // Estadística (toggle)
+  let resultadoElement = null;
+  buttonCalcular.addEventListener('click', () => {
     if (resultadoElement) {
       resultadoElement.remove();
       resultadoElement = null;
-    } else {
-      resultadoElement = document.createElement('p');
-      resultadoElement.textContent = `El promedio de número de apariciones es: ${resultado.mean}`;
-      estadistica.appendChild(resultadoElement);
+      return;
     }
+    const resultado = computeStats(data);
+    resultadoElement = document.createElement('p');
+    resultadoElement.textContent = `El promedio de número de apariciones es: ${resultado.mean}`;
+    estadistica.appendChild(resultadoElement);
   });
 
+  // Chat grupal
   const groupChatButton = infoHtml.querySelector('#group-chat-button');
-  groupChatButton.textContent = "Chat Grupal"
-  groupChatButton.addEventListener('click', () => {
-    navigateTo('/chatgroup');
-  });
-  return infoHtml;
-}
+  groupChatButton.addEventListener('click', () => navigateTo('/chatgroup'));
 
+  return infoHtml;
+};
 

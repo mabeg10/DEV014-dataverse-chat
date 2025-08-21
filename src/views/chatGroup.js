@@ -1,36 +1,41 @@
-import characters from '../data/dataset.js'; 
+import characters from '../data/dataset.js';
 import { getOpenAi } from '../lib/openAi.js';
+import { navigateTo } from '../router.js';
 
 const ChatGroupView = () => {
   const container = document.createElement('div');
   container.className = 'chat-container';
 
-
-  const imagenchat = document.createElement('img');
-  const imageUrl = "https://okdiario.com/img/series/2016/02/1445601206_241811_1445601596_sumario_normal.jpg";
-  imagenchat.src = imageUrl;
-  //imagenchat.src = 'src/imagen/chatgrupal.jpeg';
-  imagenchat.classList.add('imagenchatgrupal'); 
-
-  //Botón flecha
-  const backButton = document.createElement('button');
-  backButton.className = 'back-button-group';
-  backButton.innerHTML = '←'; // Puedes usar un ícono aquí
- 
-  backButton.addEventListener('click', () => {
-    window.location.href = '/'; // Ajusta esto según tu lógica de navegación
-  });
-
   const header = document.createElement('div');
   header.className = 'chat-headergroup';
-  header.textContent = 'Stars Hollow';  
+
+  const backButton = document.createElement('button');
+  backButton.className = 'back-button-group';
+  backButton.innerHTML = '←';
+  backButton.addEventListener('click', () => navigateTo('/'));
+
+  const imagenchat = document.createElement('img');
+  imagenchat.src = "https://okdiario.com/img/series/2016/02/1445601206_241811_1445601596_sumario_normal.jpg";
+  imagenchat.classList.add('imagenchatgrupal');
+  imagenchat.alt = 'Stars Hollow';
+
+  const title = document.createElement('div');
+  title.className = 'title';
+  title.textContent = 'Stars Hollow';
+
+  header.appendChild(backButton);
+  header.appendChild(imagenchat);
+  header.appendChild(title);
 
   const chatBox = document.createElement('div');
   chatBox.id = 'chat-box';
 
+  const inputWrap = document.createElement('div');
+  inputWrap.className = "cuadroinput";
+
   const messageInput = document.createElement('textarea');
-  messageInput.className = "cuadroinput"
-  messageInput.placeholder = 'Escribe tu mensaje...';
+  messageInput.rows = 1;
+  messageInput.placeholder = 'Escribe tu mensaje…';
 
   const sendButton = document.createElement('button');
   sendButton.textContent = 'Enviar';
@@ -49,12 +54,12 @@ const ChatGroupView = () => {
     chatBox.appendChild(userMessageElement);
     messageInput.value = '';
 
-    const messageOpenAI = characters.map((character) => ({
+    const prompts = characters.map((character) => ({
       role: 'user',
       content: `Actúa simulando ser ${character.name}, ${message}`
     }));
 
-    Promise.all(messageOpenAI.map((msg) => getOpenAi([msg])))
+    Promise.all(prompts.map((msg) => getOpenAi([msg])))
       .then((responses) => {
         responses.forEach((res, index) => {
           const aiMessageEl = document.createElement('p');
@@ -63,17 +68,15 @@ const ChatGroupView = () => {
           chatBox.appendChild(aiMessageEl);
         });
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      .catch(console.error);
   });
 
-  container.appendChild(imagenchat);
-  container.appendChild(backButton);
+  inputWrap.appendChild(messageInput);
+  inputWrap.appendChild(sendButton);
+
   container.appendChild(header);
   container.appendChild(chatBox);
-  container.appendChild(messageInput);
-  container.appendChild(sendButton);
+  container.appendChild(inputWrap);
 
   return container;
 };
